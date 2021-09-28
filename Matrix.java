@@ -5,7 +5,7 @@ import java.util.*;
 
 public class Matrix
 {
-    float[][] a={{(float)6}};
+    float[][] a;
   Matrix(int n,float v){
     a= new float[n][n];
     for(int i=0;i<n;i++){
@@ -56,15 +56,17 @@ public class Matrix
     return temp ;
   }
 
-  public Matrix matmul(Matrix obj){
+  public Matrix matmul(Matrix obj){   //Maatrix_object * Argument Matrix_object
     //System.out.println(obj.a.length);
     //System.out.println(a[1][2]);
     Matrix temp;
-    if(obj.a.length==a.length && obj.a[0].length==a[0].length){
-        temp=new Matrix(a.length,a[0].length);
+    if(obj.a.length==a[0].length){
+        temp=new Matrix(a.length,obj.a[0].length);
         for(int i=0;i<a.length;i++){
-        for(int j=0;j<a[0].length;j++){
-            temp.a[i][j]=a[i][j]*obj.a[i][j];
+        for(int j=0;j<obj.a[0].length;j++){
+            for(int k=0;k<a[0].length;k++){
+                temp.a[i][j]+=a[i][k]*obj.a[k][j];
+            }
         }
     }
     }
@@ -94,7 +96,7 @@ public class Matrix
   }
 
   public float getelem(int row_no,int col_no){
-      if(row_no>=0 && row_no<a.length && col_no>0 && col_no<a[0].length){
+      if(row_no>=0 && row_no<a.length && col_no>=0 && col_no<a[0].length){
           return a[row_no][col_no];
       }
       else{
@@ -104,7 +106,7 @@ public class Matrix
   }
 
   public void setelem(int row_no,int col_no,float value){
-    if(row_no>=0 && row_no<a.length && col_no>0 && col_no<a[0].length){
+    if(row_no>=0 && row_no<a.length && col_no>=0 && col_no<a[0].length){
         a[row_no][col_no]=value;
     }
     else{
