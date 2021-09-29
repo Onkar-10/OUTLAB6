@@ -14,8 +14,13 @@ public class q3
         return (Pattern.matches("a*b+c",s));
     }
     public Boolean func3(String s) {
-
-        return (Pattern.matches("",s));  //can c exits
+        if(s.length()%2==0){
+           // System.out.println("wow");
+            return (Pattern.matches("a+b+",s) && s.charAt(s.length()/2-1)=='a' && s.charAt(s.length()/2)=='b');
+        }
+        else
+        return false;
+        //return (Pattern.matches("",s));  //can c exits
     }
     public List<String> func4(String input_s,String pattern_s){
         List<String> substrings_list = new ArrayList<>();
